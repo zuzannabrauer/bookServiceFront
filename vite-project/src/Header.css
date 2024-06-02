@@ -1,0 +1,15 @@
+.header {
+    background-color: pink;
+    flex-grow: 1;
+    border-radius: 15px;
+    border: 5px solid deeppink;
+}
+
+.header__logo {
+    margin-top: 10px;
+    height: 70px;
+}
+
+.header__h1 {
+    margin: 0 0 10px 0;
+}

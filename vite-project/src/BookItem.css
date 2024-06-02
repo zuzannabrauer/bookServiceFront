@@ -1,0 +1,14 @@
+.bookItem {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 30px;
+    border: 3px solid #646cff;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.bookItem__details {
+    display: flex;
+    gap: 20px;
+}
