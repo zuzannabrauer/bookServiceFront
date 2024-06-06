@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {getBooks} from "./thunks.js";
+import {createBook, getBooks, editBook, removeBook} from "./thunks.js";
 
 const initialState = {
     books: [],
@@ -9,17 +9,26 @@ export const booksSlice = createSlice({
     name: 'books',
     initialState,
     reducers: {
-        setBooks: (state, action) => {
-            state.books = action.payload
-        }
     },
     extraReducers: (builder) => {
         builder.addCase(getBooks.fulfilled, (state, action) => {
             state.books = action.payload
         })
+        builder.addCase(createBook.fulfilled, (state, action) => {
+            state.books.push(action.payload)
+        })
+        builder.addCase(editBook.fulfilled, (state, action) => {
+            console.log(action)
+            state.books = state.books.map(book => {
+                if (book.id === Number(action.payload.id))
+                    return { ...action.payload, id: Number(action.payload.id) }
+                else return book
+            })
+        })
+        builder.addCase(removeBook.fulfilled, (state, action) => {
+            state.books = state.books.filter(book => book.id !== action.payload.id)
+        })
     }
 })
-
-export const { setBooks } = booksSlice.actions
 
 export default booksSlice.reducer

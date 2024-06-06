@@ -14,7 +14,7 @@ export const BookList = () => {
                     <button className="bookList__header__newBookButton">+ New book</button>
                 </Link>
             </div>
-            {books.map(book => <BookItem key={book.ID} book={book}/>)}
+            {books.map(book => <BookItem key={book.id} book={book}/>)}
         </div>
     )
 }

@@ -14,12 +14,5 @@
     font-size: 24px;
     font-weight: bold;
     padding: 5px 20px;
-    background-color: pink;
-    border: 3px solid deeppink;
     border-radius: 5px;
-}
-
-.bookList__header__newBookButton:hover {
-    box-shadow: 2px 3px palevioletred;
-    transition: .3s;
 }
