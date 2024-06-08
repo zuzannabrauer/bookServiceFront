@@ -1,0 +1,39 @@
+.imageInput {
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.imageInput__label {
+    cursor: pointer;
+    margin: 20px;
+    position: relative;
+}
+
+.imageInput__label__img {
+    color: pink;
+    width: 128px;
+    height: 128px;
+    max-width: 128px;
+    max-height: 128px;
+    min-height: 128px;
+    min-width: 128px;
+    transition: .2s;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.imageInput__label__img:hover {
+    color: deeppink;
+}
+
+.imageInput__closeIcon {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    color: pink;
+}
+
+.imageInput__closeIcon:hover {
+    color: deeppink;
+}

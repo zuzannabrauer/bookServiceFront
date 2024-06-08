@@ -6,7 +6,11 @@ const API = axios.create({
 
 export const fetchBooks = async () => await API.get('/books')
 
-export const postBook = async book => await API.post('/books', book)
+export const postBook = async book => await API.post('/books', book, {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+    }
+})
 
 export const putBook = async (id, book) => await API.put(`/books/${id}`, book)
 

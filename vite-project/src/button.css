@@ -3,6 +3,7 @@ button {
     border: 3px solid deeppink;
     border-radius: 5px;
     padding: 3px 8px;
+    cursor: pointer;
 }
 
 button:hover {

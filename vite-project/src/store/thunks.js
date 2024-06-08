@@ -5,15 +5,14 @@ export const getBooks = createAsyncThunk(
     'books/getAll',
     async () => {
         const response = await fetchBooks()
-        console.log(response.data)
         return response.data
     }
 )
 
 export const createBook = createAsyncThunk(
     'books/create',
-    async book => {
-        const response = await postBook(book)
+    async bookFormData => {
+        const response = await postBook(bookFormData)
         return response.data
     }
 )
@@ -21,8 +20,6 @@ export const createBook = createAsyncThunk(
 export const editBook = createAsyncThunk(
     'books/edit',
     async ({id, book}) => {
-        console.log(id)
-        console.log(book)
         const response = await putBook(id, book)
         return response.data
     }
@@ -30,5 +27,8 @@ export const editBook = createAsyncThunk(
 
 export const removeBook = createAsyncThunk(
     'books/delete',
-    async id => await deleteBook(id)
+    async id => {
+        await deleteBook(id)
+        return id
+    }
 )

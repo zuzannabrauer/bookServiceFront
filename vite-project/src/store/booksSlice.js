@@ -18,7 +18,6 @@ export const booksSlice = createSlice({
             state.books.push(action.payload)
         })
         builder.addCase(editBook.fulfilled, (state, action) => {
-            console.log(action)
             state.books = state.books.map(book => {
                 if (book.id === Number(action.payload.id))
                     return { ...action.payload, id: Number(action.payload.id) }
@@ -26,7 +25,7 @@ export const booksSlice = createSlice({
             })
         })
         builder.addCase(removeBook.fulfilled, (state, action) => {
-            state.books = state.books.filter(book => book.id !== action.payload.id)
+            state.books = state.books.filter(book => book.id !== Number(action.payload))
         })
     }
 })

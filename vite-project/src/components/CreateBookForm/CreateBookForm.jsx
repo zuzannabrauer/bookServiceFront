@@ -5,6 +5,7 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {createBook} from './../../store/thunks.js'
 import {useNavigate} from "react-router-dom";
+import {ImageInput} from "../ImageInput/ImageInput.jsx";
 
 export const CreateBookForm = () => {
     const dispatch = useDispatch()
@@ -15,10 +16,19 @@ export const CreateBookForm = () => {
     const [pages, setPages] = useState('')
     const [year, setYear] = useState('')
     const [genre, setGenre] = useState('')
+    const [image, setImage] = useState()
 
     const submitForm = event => {
         event.preventDefault()
-        dispatch(createBook({title, author, pages, year, genre}))
+        const data = new FormData();
+        data.append('title', title);
+        data.append('author', author);
+        data.append('pages', pages);
+        data.append('year', year);
+        data.append('genre', genre);
+        data.append('file', image);
+        console.log(data.values())
+        dispatch(createBook(data))
         navigate('/')
     }
 
@@ -38,18 +48,20 @@ export const CreateBookForm = () => {
             </div>
             <div className="inputWrapper">
                 <label htmlFor="year">Year</label>
-                <input id="year" name="year" type="number" onInput={event => setYear(event.target.value)} />
+                <input id="year" name="year" type="number" onInput={event => setYear(event.target.value)}/>
             </div>
             <div className="inputWrapper">
                 <label htmlFor="genre">Genre</label>
                 <input id="genre" name="genre" type="text" onInput={event => setGenre(event.target.value)}/>
             </div>
+            <ImageInput onChange={setImage} />
             <div className="buttonsWrapper">
                 <button onClick={event => submitForm(event)}>Submit</button>
                 <Link to="/">
                     <button>Cancel</button>
                 </Link>
             </div>
+            {/*<img src="http://localhost:3000/1717844564377.png"/>*/}
         </form>
     )
 }

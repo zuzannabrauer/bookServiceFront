@@ -19,3 +19,8 @@
     display: flex;
     gap: 20px;
 }
+
+.bookItem__buttons {
+    display: flex;
+    gap: 8px;
+}
