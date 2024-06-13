@@ -2,29 +2,34 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleXmark, faImage} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
 import './ImageInput.css'
+import {ImageWithFallback} from "../BookList/ImageWithFallback.jsx";
 
-export const ImageInput = ({ onChange }) => {
-    const [ fileInputIcon, setFileInputIcon ] = useState()
+export const ImageInput = ({ defaultValue, onChange }) => {
+    const [ image, setImage ] = useState(defaultValue)
+    const [ isBroken, setIsBroken ] = useState(false)
 
     const updateFileInput = e => {
-        console.log(e.target.files[[0]])
         onChange(e.target.files[0])
         const r = new FileReader()
         r.readAsDataURL(e.target.files[0])
-        r.onloadend = ev => setFileInputIcon(ev.target.result.toString())
+        r.onloadend = ev => setImage(ev.target.result.toString())
+        setIsBroken(false)
     }
 
     const resetImageInput = event => {
         event.preventDefault()
-        setFileInputIcon(undefined)
+        setImage(undefined)
+        onChange(undefined)
     }
 
     return (
         <>
             <label htmlFor="image" className="imageInput__label">
-                {fileInputIcon ?
+                {!isBroken && image ?
                     <>
-                        <img src={fileInputIcon} className="imageInput__label__img"/>
+                        <img src={image}
+                             className="imageInput__label__img"
+                             onError={() => setIsBroken(true)} />
                         <FontAwesomeIcon className="imageInput__closeIcon" icon={faCircleXmark}
                                          onClick={resetImageInput}/>
                     </>

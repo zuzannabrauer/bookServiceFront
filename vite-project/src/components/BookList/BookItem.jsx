@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {removeBook} from "../../store/thunks.js";
 import {faTrash, faPen} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {ImageWithFallback} from "./ImageWithFallback.jsx";
 
 export const BookItem = ({ book }) => {
     const dispatch = useDispatch()
@@ -14,6 +15,9 @@ export const BookItem = ({ book }) => {
 
     return (
         <div className="bookItem">
+            <ImageWithFallback src={`http://localhost:3000/${book.id}?${new Date()}`}
+                               className="bookItem__image"
+                               fallback="/book_icon.svg" />
             <div className="bookItem__details">
                 <h3 className="bookItem__details__title">{book.title}</h3>
                 <div className="bookItem__details__secondary">

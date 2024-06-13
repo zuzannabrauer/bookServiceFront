@@ -12,6 +12,10 @@ export const postBook = async book => await API.post('/books', book, {
     }
 })
 
-export const putBook = async (id, book) => await API.put(`/books/${id}`, book)
+export const putBook = async (id, book) => await API.put(`/books/${id}`, book, {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+    }
+})
 
 export const deleteBook = async id => await API.delete(`/books/${id}`)

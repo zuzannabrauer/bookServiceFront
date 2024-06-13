@@ -20,14 +20,13 @@ export const CreateBookForm = () => {
 
     const submitForm = event => {
         event.preventDefault()
-        const data = new FormData();
-        data.append('title', title);
-        data.append('author', author);
-        data.append('pages', pages);
-        data.append('year', year);
-        data.append('genre', genre);
-        data.append('file', image);
-        console.log(data.values())
+        const data = new FormData()
+        data.append('title', title)
+        data.append('author', author)
+        data.append('pages', pages)
+        data.append('year', year)
+        data.append('genre', genre)
+        data.append('file', image)
         dispatch(createBook(data))
         navigate('/')
     }
@@ -61,7 +60,6 @@ export const CreateBookForm = () => {
                     <button>Cancel</button>
                 </Link>
             </div>
-            {/*<img src="http://localhost:3000/1717844564377.png"/>*/}
         </form>
     )
 }

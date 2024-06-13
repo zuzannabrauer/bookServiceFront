@@ -1,0 +1,8 @@
+.bookItem__image {
+    height: 130px;
+    width: 100px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background-color: pink;
+    object-fit: contain;
+}

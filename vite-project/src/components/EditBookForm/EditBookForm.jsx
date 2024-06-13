@@ -3,17 +3,14 @@ import './EditBookForm.css'
 import '../../form.css'
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {editBook} from './../../store/thunks.js'
+import {createBook, editBook} from './../../store/thunks.js'
 import {useNavigate} from "react-router-dom";
+import {ImageInput} from "../ImageInput/ImageInput.jsx";
 
 export const EditBookForm = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
-    const bookToUpdate = useSelector(state => {
-        console.log(state.books)
-        console.log(state.books.books.find(book => book.id === Number(id)))
-        return state.books.books.find(book => book.id === Number(id))
-    })
+    const bookToUpdate = useSelector(state => state.books.books.find(book => book.id === Number(id)))
     const navigate = useNavigate()
 
     const [title, setTitle] = useState('')
@@ -21,6 +18,22 @@ export const EditBookForm = () => {
     const [pages, setPages] = useState('')
     const [year, setYear] = useState('')
     const [genre, setGenre] = useState('')
+    const [shouldRemoveImage, setShouldRemoveImage] = useState(false)
+    const [image, setImage] = useState()
+
+    const submitForm = event => {
+        event.preventDefault()
+        const data = new FormData()
+        data.append('title', title)
+        data.append('author', author)
+        data.append('pages', pages)
+        data.append('year', year)
+        data.append('genre', genre)
+        data.append('removeFile', shouldRemoveImage)
+        data.append('file', image)
+        dispatch(editBook({ id: bookToUpdate.id, bookFormData: data }))
+        navigate('/')
+    }
 
     useEffect(() => {
         if (bookToUpdate) {
@@ -30,12 +43,17 @@ export const EditBookForm = () => {
             setYear(bookToUpdate.year)
             setGenre(bookToUpdate.genre)
         }
-    }, [bookToUpdate]);
+    }, [bookToUpdate])
 
-    const submitForm = event => {
-        event.preventDefault()
-        dispatch(editBook({id, book: {title, author, pages, year, genre}}))
-        navigate('/')
+    // const submitForm = event => {
+    //     event.preventDefault()
+    //     dispatch(editBook({id, book: {title, author, pages, year, genre}}))
+    //     navigate('/')
+    // }
+
+    const onImageChange = newImage => {
+        setImage(newImage)
+        setShouldRemoveImage(newImage === undefined)
     }
 
     return (
@@ -60,6 +78,7 @@ export const EditBookForm = () => {
                 <label htmlFor="genre">Genre</label>
                 <input id="genre" name="genre" type="text" value={genre} onInput={event => setGenre(event.target.value)}/>
             </div>
+            <ImageInput defaultValue={`http://localhost:3000/${bookToUpdate.id}`} onChange={onImageChange} />
             <div className="buttonsWrapper">
                 <button onClick={event => submitForm(event)}>Submit</button>
                 <Link to="/">

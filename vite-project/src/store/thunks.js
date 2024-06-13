@@ -19,8 +19,8 @@ export const createBook = createAsyncThunk(
 
 export const editBook = createAsyncThunk(
     'books/edit',
-    async ({id, book}) => {
-        const response = await putBook(id, book)
+    async ({id, bookFormData}) => {
+        const response = await putBook(id, bookFormData)
         return response.data
     }
 )

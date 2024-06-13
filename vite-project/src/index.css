@@ -18,10 +18,11 @@ body::-webkit-scrollbar {
 }
 
 #root {
-  max-width: 1280px;
+  width: 800px;
+  min-width: 800px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
-  width: 70%;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
