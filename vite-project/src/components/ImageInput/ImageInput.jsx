@@ -2,7 +2,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleXmark, faImage} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
 import './ImageInput.css'
-import {ImageWithFallback} from "../BookList/ImageWithFallback.jsx";
 
 export const ImageInput = ({ defaultValue, onChange }) => {
     const [ image, setImage ] = useState(defaultValue)

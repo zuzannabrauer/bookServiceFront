@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {fetchBooks, postBook, putBook, deleteBook} from "./api.js";
+import {fetchBooks, postBook, putBook, deleteBook, putInFavourites} from "./api.js";
 
 export const getBooks = createAsyncThunk(
     'books/getAll',
@@ -30,5 +30,13 @@ export const removeBook = createAsyncThunk(
     async id => {
         await deleteBook(id)
         return id
+    }
+)
+
+export const editInFavourites = createAsyncThunk(
+    'books/editInFavourites',
+    async ({id, isInFavourites}) => {
+        const response = await putInFavourites(id, isInFavourites)
+        return response.data
     }
 )

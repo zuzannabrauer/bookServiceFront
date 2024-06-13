@@ -19,3 +19,5 @@ export const putBook = async (id, book) => await API.put(`/books/${id}`, book, {
 })
 
 export const deleteBook = async id => await API.delete(`/books/${id}`)
+
+export const putInFavourites = async (id, isInFavourites) => await API.put(`/books/${id}/favourites/${isInFavourites}`)

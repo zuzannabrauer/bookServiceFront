@@ -5,6 +5,7 @@ import {removeBook} from "../../store/thunks.js";
 import {faTrash, faPen} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {ImageWithFallback} from "./ImageWithFallback.jsx";
+import {FavouritesIcon} from "./FavouritesIcon.jsx";
 
 export const BookItem = ({ book }) => {
     const dispatch = useDispatch()
@@ -27,6 +28,7 @@ export const BookItem = ({ book }) => {
                     <span>Genre: {book.genre}</span>
                 </div>
             </div>
+            <FavouritesIcon id={book.id} isInFavourites={book.isInFavourites} />
             <div className="bookItem__buttons">
                 <Link to={`/edit-book/${book.id}`}>
                     <button>
